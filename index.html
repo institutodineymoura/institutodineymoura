@@ -100,8 +100,8 @@ footer{background:var(--ink);color:#d8d8d8;padding:28px 0;font-size:14px}
 
 .more{display:flex;width:fit-content;align-items:center;min-height:44px;margin-top:14px;padding:10px 18px;border-radius:999px;background:var(--b);color:#fff;font-weight:700;text-decoration:none}
 .more::after{content:"→";margin-left:6px;transition:transform .15s}.more:hover::after{transform:translateX(3px)}
-dialog#juridico{border:0;padding:0;border-radius:22px;width:min(860px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;background:#fff;color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
-dialog#juridico::backdrop{background:rgba(10,10,10,.6)}
+dialog#juridico,dialog#avisar{border:0;padding:0;border-radius:22px;width:min(860px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;background:#fff;color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog#juridico::backdrop,dialog#avisar::backdrop{background:rgba(10,10,10,.6)}
 .dj{position:relative}
 .ilu{background:linear-gradient(#eaf2fb 80%,#d7e6f6 80%)}.ilu svg{display:block;width:100%;height:clamp(170px,30vw,240px)}
 .x{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
@@ -116,6 +116,31 @@ dialog#juridico::backdrop{background:rgba(10,10,10,.6)}
 .areas li{margin:2px 0}
 .obs{font-weight:600;color:var(--ink)!important}
 button.btn{border:0;font:inherit;font-weight:700;cursor:pointer}
+/* lista de avisos */
+.prox{margin-top:12px;padding:10px 12px;border-radius:12px;background:#e3f5ef;color:#1d7a62;font-size:14px;font-weight:600}
+.prox.sem{background:var(--surf);color:var(--mut)}
+.prox strong{display:block;color:var(--ink);font-size:15px}
+button.more{border:0;font:inherit;font-weight:700;cursor:pointer}
+.more.zap{background:var(--g)}
+.lk{display:inline-block;margin-top:10px;background:none;border:0;padding:4px 0;font:inherit;font-size:14px;font-weight:700;color:var(--b);text-decoration:underline;cursor:pointer;min-height:44px}
+dialog#avisar{width:min(520px,calc(100% - 24px))}
+.fa{padding:clamp(22px,4vw,34px)}
+.fa h2{font-size:clamp(24px,3.4vw,30px);margin:10px 0 8px}
+.fa>p{color:var(--mut);margin:0 0 18px}
+.fa label{display:block;font-weight:700;margin:14px 0 4px}
+.fa label small{font-weight:400;color:var(--mut)}
+.fa input[type=text],.fa input[type=email],.fa input[type=tel]{width:100%;box-sizing:border-box;font:inherit;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);min-height:48px}
+.fa input:focus{outline:none;border-color:var(--b)}
+.fa .ck{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:14px;color:var(--mut);margin:18px 0 20px;cursor:pointer}
+.fa .ck input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--g)}
+.fa .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fa .err{color:var(--r);font-weight:600;font-size:14px;margin:0 0 14px;min-height:0}
+.fa .err:empty{display:none}
+.fa button[disabled]{opacity:.6;cursor:wait}
+.ok{text-align:center;padding:12px 0 4px}
+.ok .ic2{width:64px;height:64px;border-radius:50%;background:#e3f5ef;display:grid;place-items:center;margin:0 auto 14px}
+.ok .ic2 svg{width:34px;height:34px;stroke:#1d7a62;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ok p{color:var(--mut)}
 @media(max-width:760px){.areas{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.areas{grid-template-columns:1fr}}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -279,6 +304,35 @@ button.btn{border:0;font:inherit;font-weight:700;cursor:pointer}
  </div>
 </dialog>
 
+<dialog id="avisar" aria-labelledby="at">
+ <div class="dj">
+  <button class="x" type="button" data-fechar aria-label="Fechar">×</button>
+  <div class="fa">
+   <form id="fa" novalidate>
+    <span class="pill free" id="ap">Gratuito</span>
+    <h2 id="at">Quero ser avisado</h2>
+    <p id="ad">Ainda não temos data marcada. Deixe seu contato e mandamos um e-mail assim que sair a próxima.</p>
+    <label for="fn">Nome</label>
+    <input type="text" id="fn" name="nome" autocomplete="name" required maxlength="80">
+    <label for="fe">E-mail</label>
+    <input type="email" id="fe" name="email" autocomplete="email" inputmode="email" required maxlength="120">
+    <label for="fw">WhatsApp <small>(opcional)</small></label>
+    <input type="tel" id="fw" name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="(31) 9 0000-0000" maxlength="20">
+    <div class="hp" aria-hidden="true"><label for="fs">Deixe em branco</label><input type="text" id="fs" name="site" tabindex="-1" autocomplete="off"></div>
+    <label class="ck"><input type="checkbox" id="fc" required><span>Aceito receber avisos do Instituto Diney Moura sobre este serviço. Posso sair da lista quando quiser.</span></label>
+    <p class="err" id="fr" role="alert"></p>
+    <button class="btn" type="submit" id="fb">Me avise</button>
+   </form>
+   <div class="ok" id="fok" hidden>
+    <div class="ic2" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2 tabindex="-1" id="okt">Pronto!</h2>
+    <p id="okm">Você está na lista. Assim que sair a data, avisamos no seu e-mail.</p>
+    <button class="btn alt" type="button" data-fechar>Voltar ao site</button>
+   </div>
+  </div>
+ </div>
+</dialog>
+
 <div class="strip"></div>
 <footer><div class="w ft"><span>© Instituto Diney Moura. Todos os direitos reservados.</span><span>R. José Ovídio Guerra, 260 – Cardoso, Belo Horizonte – MG · <a href="https://www.instagram.com/institutodineymoura/" target="_blank" rel="noopener">@institutodineymoura</a></span></div></footer>
 
@@ -296,6 +350,11 @@ const ic={
  mais:'<path d="M12 5v14M5 12h14"/>'
 };
 const cores=['r','y','g','b'];
+/* Lista de avisos: endereço do script da planilha (veja avisos/COMO-CONFIGURAR.md).
+   Enquanto estiver vazio, o botão "Quero ser avisado" não aparece. */
+const AVISOS_URL='';
+/* título do card → nome do serviço na planilha */
+const AVISOS={'Exames de vista':'Exame de vista'};
 const acoes=[
  ['pilates','Aulas de pilates','Movimento e bem-estar para a comunidade.'],
  ['bale','Balé infantil','Aulas para crianças, com disciplina e alegria.'],
@@ -310,7 +369,7 @@ const acoes=[
 document.getElementById('lista').innerHTML=acoes.map(([k,t,d,p],i)=>{
  const c='var(--'+cores[i%4]+')';
  const pill=p?'<span class="pill free">'+p+'</span>':(k==='mais'?'':'<span class="pill">Gratuito ou preço social</span>');
- return '<div class="card" style="--c:'+c+'"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ic[k]+'</svg></div><h3>'+t+'</h3><p>'+d+'</p>'+pill+(k==='lei'?'<a class="more" href="#atendimento-juridico" data-open="juridico">Saiba mais</a>':'')+'</div>';
+ return '<div class="card" style="--c:'+c+'"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ic[k]+'</svg></div><h3>'+t+'</h3><p>'+d+'</p>'+pill+(k==='lei'?'<a class="more" href="#atendimento-juridico" data-open="juridico">Saiba mais</a>':'')+(AVISOS[t]?'<div data-aviso="'+AVISOS[t]+'"></div>':'')+'</div>';
 }).join('');
 const dj=document.getElementById('juridico');
 const abrir=()=>{if(!dj.open){dj.showModal();dj.scrollTop=0}};
@@ -320,6 +379,52 @@ dj.addEventListener('click',e=>{if(e.target===dj||e.target.closest('[data-close]
 dj.addEventListener('close',()=>{if(location.hash==='#atendimento-juridico'){try{history.replaceState(null,'',location.pathname+location.search)}catch(_){}}});
 const porHash=()=>{if(location.hash==='#atendimento-juridico')abrir()};
 window.addEventListener('hashchange',porHash);porHash();
+if(AVISOS_URL){
+ const da=document.getElementById('avisar'),f=document.getElementById('fa'),er=document.getElementById('fr'),bt=document.getElementById('fb');
+ let servico='';
+ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const zap=(sv,d)=>'https://wa.me/553193443778?text='+encodeURIComponent('Olá! Quero garantir minha vaga no '+sv.toLowerCase()+' do dia '+d.dataTexto+'.');
+ const montar=agenda=>{
+  document.querySelectorAll('[data-aviso]').forEach(el=>{
+   const sv=el.dataset.aviso,d=(agenda||[]).find(a=>a.servico===sv);
+   el.innerHTML=d
+    ?'<div class="prox">Próxima data<strong>'+esc(d.dataTexto)+(d.horario?' · '+esc(d.horario):'')+'</strong>'+(d.obs?esc(d.obs):'')+'</div>'
+     +'<a class="more zap" href="'+zap(sv,d)+'" target="_blank" rel="noopener">Garantir minha vaga</a>'
+     +'<button class="lk" type="button" data-avisar="'+esc(sv)+'" data-tem="1">Avisar também das próximas datas</button>'
+    :'<div class="prox sem">Ainda sem data marcada</div>'
+     +'<button class="more" type="button" data-avisar="'+esc(sv)+'">Quero ser avisado</button>';
+  });
+ };
+ montar([]);
+ fetch(AVISOS_URL+'?acao=agenda').then(r=>r.json()).then(j=>{if(j&&j.ok)montar(j.agenda)}).catch(()=>{});
+ const abrirAv=(sv,tem)=>{
+  servico=sv;
+  document.getElementById('at').textContent=tem?'Avisar das próximas datas':'Quero ser avisado';
+  document.getElementById('ad').textContent=(tem?'Quer saber das próximas datas de ':'Ainda não temos data marcada para ')+sv.toLowerCase()+(tem?'? Deixe seu contato e mandamos um e-mail sempre que sair uma nova.':'. Deixe seu contato e mandamos um e-mail assim que sair a próxima.');
+  f.hidden=false;document.getElementById('fok').hidden=true;er.textContent='';
+  da.showModal();da.scrollTop=0;
+ };
+ document.addEventListener('click',e=>{const b=e.target.closest('[data-avisar]');if(b)abrirAv(b.dataset.avisar,!!b.dataset.tem)});
+ da.addEventListener('click',e=>{if(e.target===da||e.target.closest('[data-fechar]'))da.close()});
+ const msgs={nome:'Escreva seu nome.',email:'Confira o e-mail: parece que falta alguma coisa.',whatsapp:'Confira o WhatsApp: coloque o DDD e o número.',consentimento:'Marque a caixinha para aceitar receber os avisos.'};
+ f.addEventListener('submit',e=>{
+  e.preventDefault();er.textContent='';
+  const nome=f.nome.value.trim(),email=f.email.value.trim(),whatsapp=f.whatsapp.value.trim(),ok=document.getElementById('fc').checked;
+  const w=whatsapp.replace(/\D/g,'');
+  const falta=nome.length<2?'nome':!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)?'email':(w&&w.length<10)?'whatsapp':!ok?'consentimento':'';
+  if(falta){er.textContent=msgs[falta];({nome:f.nome,email:f.email,whatsapp:f.whatsapp,consentimento:document.getElementById('fc')})[falta].focus();return}
+  bt.disabled=true;bt.textContent='Enviando…';
+  fetch(AVISOS_URL,{method:'POST',body:JSON.stringify({nome,email,whatsapp,interesse:servico,consentimento:true,site:f.site.value})})
+   .then(r=>r.json()).then(j=>{
+    if(!j.ok){er.textContent=msgs[j.erro]||'Não deu certo. Tente de novo.';return}
+    f.reset();f.hidden=true;const o=document.getElementById('fok');o.hidden=false;
+    document.getElementById('okm').textContent=j.jaCadastrado?'Seu e-mail já estava na lista. Assim que sair a data, avisamos você.':'Você está na lista. Mandamos uma confirmação para o seu e-mail, e avisamos assim que sair a data.';
+    document.getElementById('okt').focus();
+   })
+   .catch(()=>{er.innerHTML='Não conseguimos enviar agora. Tente de novo ou <a href="https://wa.me/553193443778" target="_blank" rel="noopener" style="color:var(--b)">fale com a gente no WhatsApp</a>.'})
+   .finally(()=>{bt.disabled=false;bt.textContent='Me avise'});
+ });
+}
 const m=document.getElementById('menu'),n=document.getElementById('nav');
 m.addEventListener('click',()=>{const o=n.classList.toggle('open');m.setAttribute('aria-expanded',o)});
 n.addEventListener('click',e=>{if(e.target.closest('a')){n.classList.remove('open');m.setAttribute('aria-expanded','false')}});

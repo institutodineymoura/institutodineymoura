@@ -97,6 +97,27 @@ details p{margin:0;padding:0 22px 20px;color:var(--mut)}
 footer{background:var(--ink);color:#d8d8d8;padding:28px 0;font-size:14px}
 .ft{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
+
+.more{display:flex;width:fit-content;align-items:center;min-height:44px;margin-top:14px;padding:10px 18px;border-radius:999px;background:var(--b);color:#fff;font-weight:700;text-decoration:none}
+.more::after{content:"→";margin-left:6px;transition:transform .15s}.more:hover::after{transform:translateX(3px)}
+dialog#juridico{border:0;padding:0;border-radius:22px;width:min(860px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;background:#fff;color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog#juridico::backdrop{background:rgba(10,10,10,.6)}
+.dj{position:relative}
+.ilu{background:linear-gradient(#eaf2fb 80%,#d7e6f6 80%)}.ilu svg{display:block;width:100%;height:clamp(170px,30vw,240px)}
+.x{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.db{padding:clamp(20px,4vw,36px)}
+.db h2{margin:10px 0 14px}
+.db>p{color:var(--mut);margin:0 0 14px;max-width:68ch}
+.db strong{color:var(--ink)}
+.areas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:8px 0 18px}
+.areas>div{background:var(--surf);border-radius:14px;padding:16px}
+.areas h3{font-size:16px;margin-bottom:6px}
+.areas ul{margin:0;padding-left:18px;color:var(--mut);font-size:15px}
+.areas li{margin:2px 0}
+.obs{font-weight:600;color:var(--ink)!important}
+button.btn{border:0;font:inherit;font-weight:700;cursor:pointer}
+@media(max-width:760px){.areas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.areas{grid-template-columns:1fr}}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:820px){
  .menu{display:block}
@@ -199,6 +220,65 @@ footer{background:var(--ink);color:#d8d8d8;padding:28px 0;font-size:14px}
 <p class="note">Modelo de demonstração. Textos entre colchetes e números são exemplos a serem substituídos por dados reais.</p></div>
 </section>
 </main>
+<dialog id="juridico" aria-labelledby="jt">
+ <div class="dj">
+  <button class="x" type="button" data-close aria-label="Fechar">×</button>
+  <div class="ilu" aria-hidden="true">
+   <svg viewBox="0 0 400 220" role="img">
+    <rect width="400" height="220" fill="#eaf2fb"/>
+    <rect x="0" y="176" width="400" height="44" fill="#d7e6f6"/>
+    <g transform="translate(36 96)">
+     <rect x="0" y="62" width="104" height="18" rx="3" fill="#2f78c8"/>
+     <rect x="6" y="44" width="96" height="18" rx="3" fill="#3fb39a"/>
+     <rect x="2" y="26" width="100" height="18" rx="3" fill="#e3342f"/>
+     <rect x="12" y="31" width="60" height="3" fill="#fff" opacity=".6"/>
+     <rect x="16" y="49" width="56" height="3" fill="#fff" opacity=".6"/>
+     <rect x="12" y="67" width="64" height="3" fill="#fff" opacity=".6"/>
+    </g>
+    <g transform="translate(200 30)" stroke="#141414" stroke-width="5" stroke-linecap="round" fill="none">
+     <line x1="0" y1="10" x2="0" y2="140"/>
+     <line x1="-62" y1="34" x2="62" y2="34"/>
+     <line x1="-62" y1="34" x2="-84" y2="88"/><line x1="-62" y1="34" x2="-40" y2="88"/>
+     <line x1="62" y1="34" x2="40" y2="88"/><line x1="62" y1="34" x2="84" y2="88"/>
+     <path d="M-90 88 a28 14 0 0 0 56 0z" fill="#f2c500"/>
+     <path d="M34 88 a28 14 0 0 0 56 0z" fill="#f2c500"/>
+     <path d="M-30 146 h60" stroke-width="8"/>
+     <circle cx="0" cy="10" r="7" fill="#141414"/>
+    </g>
+    <g transform="translate(296 92)">
+     <rect x="0" y="0" width="70" height="88" rx="6" fill="#fff" stroke="#141414" stroke-width="3"/>
+     <rect x="12" y="16" width="46" height="4" rx="2" fill="#2f78c8"/>
+     <rect x="12" y="30" width="38" height="4" rx="2" fill="#bcc9d6"/>
+     <rect x="12" y="42" width="44" height="4" rx="2" fill="#bcc9d6"/>
+     <rect x="12" y="54" width="30" height="4" rx="2" fill="#bcc9d6"/>
+     <path d="M14 72 q8 -10 14 0 t14 0" stroke="#e3342f" stroke-width="3" fill="none"/>
+    </g>
+   </svg>
+  </div>
+  <div class="db">
+   <span class="pill">Gratuito ou preço social</span>
+   <h2 id="jt">Atendimento jurídico</h2>
+   <p>O atendimento jurídico do Instituto Diney Moura oferece orientação com advogado para quem precisa entender seus direitos e não sabe por onde começar. A pessoa conta o seu caso, recebe explicações em linguagem simples sobre os caminhos possíveis e, quando for preciso, é orientada sobre documentos e sobre como entrar com uma ação.</p>
+   <p><strong>Atendemos qualquer tipo de caso.</strong> Abaixo estão alguns exemplos, só para você ter uma ideia:</p>
+   <div class="areas">
+    <div><h3>Família</h3><ul><li>Divórcio e separação</li><li>Pensão alimentícia</li><li>Guarda e visitas dos filhos</li><li>União estável</li><li>Reconhecimento de paternidade</li><li>Inventário e herança</li></ul></div>
+    <div><h3>Trabalho</h3><ul><li>Causas trabalhistas</li><li>Acidente de trabalho</li><li>Demissão e verbas rescisórias</li><li>Horas extras e FGTS</li><li>Trabalho sem carteira assinada</li><li>Assédio no trabalho</li></ul></div>
+    <div><h3>INSS e previdência</h3><ul><li>Aposentadoria</li><li>Auxílio-doença</li><li>BPC/LOAS para idosos e pessoas com deficiência</li><li>Pensão por morte</li><li>Benefício negado ou cortado</li></ul></div>
+    <div><h3>Consumidor</h3><ul><li>Nome negativado indevidamente</li><li>Cobranças abusivas</li><li>Problemas com bancos e empréstimos</li><li>Plano de saúde</li><li>Produto ou serviço com defeito</li></ul></div>
+    <div><h3>Cível e moradia</h3><ul><li>Indenização e danos morais</li><li>Aluguel e despejo</li><li>Usucapião e regularização de imóvel</li><li>Contratos e dívidas</li><li>Acidentes de trânsito</li></ul></div>
+    <div><h3>Outros casos</h3><ul><li>Orientação em casos criminais</li><li>Violência doméstica (Lei Maria da Penha)</li><li>Direitos da criança e do adolescente</li><li>Documentos e certidões</li></ul></div>
+   </div>
+   <p class="obs">Não encontrou o seu caso na lista? Fale com a gente mesmo assim.</p>
+   <div class="acts">
+    <a class="btn" href="https://w.app/institutodineymourajuridico" target="_blank" rel="noopener">
+     <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+     Agendar atendimento jurídico</a>
+    <button class="btn alt" type="button" data-close>Voltar ao site</button>
+   </div>
+  </div>
+ </div>
+</dialog>
+
 <div class="strip"></div>
 <footer><div class="w ft"><span>© Instituto Diney Moura. Todos os direitos reservados.</span><span>R. José Ovídio Guerra, 260 – Cardoso, Belo Horizonte – MG · <a href="https://www.instagram.com/institutodineymoura/" target="_blank" rel="noopener">@institutodineymoura</a></span></div></footer>
 
@@ -230,8 +310,16 @@ const acoes=[
 document.getElementById('lista').innerHTML=acoes.map(([k,t,d,p],i)=>{
  const c='var(--'+cores[i%4]+')';
  const pill=p?'<span class="pill free">'+p+'</span>':(k==='mais'?'':'<span class="pill">Gratuito ou preço social</span>');
- return '<div class="card" style="--c:'+c+'"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ic[k]+'</svg></div><h3>'+t+'</h3><p>'+d+'</p>'+pill+'</div>';
+ return '<div class="card" style="--c:'+c+'"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ic[k]+'</svg></div><h3>'+t+'</h3><p>'+d+'</p>'+pill+(k==='lei'?'<a class="more" href="#atendimento-juridico" data-open="juridico">Saiba mais</a>':'')+'</div>';
 }).join('');
+const dj=document.getElementById('juridico');
+const abrir=()=>{if(!dj.open){dj.showModal();dj.scrollTop=0}};
+const fechar=()=>{if(dj.open)dj.close()};
+document.addEventListener('click',e=>{const a=e.target.closest('[data-open="juridico"]');if(a){e.preventDefault();abrir();try{history.replaceState(null,'','#atendimento-juridico')}catch(_){}}});
+dj.addEventListener('click',e=>{if(e.target===dj||e.target.closest('[data-close]'))fechar()});
+dj.addEventListener('close',()=>{if(location.hash==='#atendimento-juridico'){try{history.replaceState(null,'',location.pathname+location.search)}catch(_){}}});
+const porHash=()=>{if(location.hash==='#atendimento-juridico')abrir()};
+window.addEventListener('hashchange',porHash);porHash();
 const m=document.getElementById('menu'),n=document.getElementById('nav');
 m.addEventListener('click',()=>{const o=n.classList.toggle('open');m.setAttribute('aria-expanded',o)});
 n.addEventListener('click',e=>{if(e.target.closest('a')){n.classList.remove('open');m.setAttribute('aria-expanded','false')}});
